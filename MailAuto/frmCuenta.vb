@@ -1,4 +1,6 @@
-﻿Public Class frmCuenta
+﻿Imports System.ComponentModel
+
+Public Class frmCuenta
     Private mConfig As Configuracion
 
     Public Sub New(ByVal lConfig As Configuracion)
@@ -19,7 +21,11 @@
         With mConfig
             .MailAddress = txtMailAddress.Text
             .SMTPHost = txtSMTPHost.Text
-            .SMTPPort = txtSMTPPort.Text
+            If Len(txtSMTPPort.Text) > 0 AndAlso IsTextInteger(txtSMTPPort) Then
+                .SMTPPort = txtSMTPPort.Text
+            Else
+                .SMTPPort = 0
+            End If
             .SMTPUser = txtSMTPUser.Text
             .SMTPPass = txtSMTPPass.Text
             .SMTPSSL = chkSMTPSSL.Checked
@@ -48,4 +54,27 @@
             chkSMTPSSL.Checked = .SMTPSSL
         End With
     End Sub
+
+    Private Sub TxtSMTPPort_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSMTPPort.KeyPress
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TxtSMTPPort_Validating(sender As Object, e As CancelEventArgs) Handles txtSMTPPort.Validating
+        e.Cancel = Not IsTextInteger(CType(sender, TextBox))
+    End Sub
+
+    Private Function IsTextInteger(target As TextBox) As Boolean
+        If target.TextLength = 0 Then Return True
+        If Integer.TryParse(target.Text, Nothing) AndAlso CInt(target.Text) >= 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class
