@@ -47,6 +47,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mail_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ChilkatDotNet46">
       <HintPath>..\..\..\..\..\..\DESARROLLO.HERNAN\dependencies\ChilkatDotNet46.dll</HintPath>
@@ -136,6 +139,12 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resouces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="mail_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

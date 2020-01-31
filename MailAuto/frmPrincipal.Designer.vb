@@ -22,6 +22,7 @@ Partial Class frmPrincipal
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
         Me.txtPara = New System.Windows.Forms.TextBox()
         Me.txtAsunto = New System.Windows.Forms.TextBox()
         Me.txtMensaje = New System.Windows.Forms.TextBox()
@@ -204,6 +205,7 @@ Partial Class frmPrincipal
         Me.Controls.Add(Me.txtAsunto)
         Me.Controls.Add(Me.txtPara)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmPrincipal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
