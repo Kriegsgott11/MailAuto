@@ -22,9 +22,9 @@
         CargarDatos()
     End Sub
 
-    Private Sub CmdEnviar_Click(sender As Object, e As EventArgs) Handles cmdEnviar.Click
+    Private Async Sub CmdEnviar_Click(sender As Object, e As EventArgs) Handles cmdEnviar.Click
         If GuardarDatos() Then
-            Send_Mail(mConfig)
+            Await Send_Mail(mConfig)
         End If
     End Sub
 

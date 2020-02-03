@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Net.Mail
 Imports System.Text
 Imports Newtonsoft.Json
 
@@ -88,63 +89,51 @@ Module modFunciones
     End Sub
 
 #Region "Correo"
-    Public Function Send_Mail(ByVal C As Configuracion) As Boolean
+
+    Public Async Function Send_Mail(ByVal C As Configuracion) As Task(Of Boolean)
         Dim Para As String()
         Dim Adjuntos As String()
         Dim sep As Char() = New Char() {";"c}
-        Dim mailMan As Chilkat.MailMan
-        Dim email As Chilkat.Email
+        Dim smtpClient As SmtpClient = Nothing
+        Dim email As MailMessage = Nothing
 
         Try
-            mailMan = New Chilkat.MailMan
-            mailMan.UnlockComponent("STacticMAILQ_O7skmIlsDwAG")
-            With mailMan
-                .SmtpHost = C.SMTPHost
-                .SmtpPort = C.SMTPPort
-                .SmtpUsername = C.SMTPUser
-                .SmtpPassword = C.SMTPPass
-                .SmtpSsl = C.SMTPSSL
-                .ReadTimeout = 30
-                .AutoGenMessageId = False
-            End With
+            smtpClient = New SmtpClient(C.SMTPHost) With {
+                .Port = C.SMTPPort,
+                .EnableSsl = C.SMTPSSL,
+                .Credentials = New Net.NetworkCredential(C.SMTPUser, C.SMTPPass)
+            }
 
-            If Not mailMan.VerifySmtpLogin Then
-                If Not VerifySmtpLogin(mailMan) Then
-                    Return False
-                End If
-            End If
-
-            email = New Chilkat.Email With {
+            email = New MailMessage With {
+                .From = New MailAddress(C.MailAddress),
                 .Subject = C.Asunto,
-                .Body = C.Mensaje,
-                .From = C.MailAddress
+                .Body = C.Mensaje
             }
 
             Para = C.Para.Split(sep, StringSplitOptions.RemoveEmptyEntries).Select(Function(p) p.Trim()).ToArray()
             For Each m As String In Para
-                email.AddTo("", m)
+                email.To.Add(m)
             Next
 
             Adjuntos = C.Adjunto.Split(sep, StringSplitOptions.RemoveEmptyEntries).Select(Function(p) p.Trim()).ToArray()
             For Each a As String In Adjuntos
                 If File.Exists(a) Then
-                    email.AddFileAttachment(a)
+                    email.Attachments.Add(New Attachment(a))
                 End If
             Next
 
-            If Not mailMan.SendEmail(email) Then
-                AddLine2Log("Ocurrió un error al enviar el correo: " & mailMan.LastErrorText)
-                MsgBox("Ocurrió un error al enviar el correo, para mas información, revise el archivo de errores.", vbInformation, sTitulo)
-                Return False
-            End If
-
+            Await smtpClient.SendMailAsync(email)
             Return True
+
         Catch ex As Exception
-            MsgBox("Error: " & ex.Message, vbCritical, sTitulo)
+            MsgBox("Error al enviar el correo: " & ex.Message, vbCritical, sTitulo)
             Return False
         Finally
-            If Not mailMan Is Nothing Then
-                mailMan.CloseSmtpConnection()
+            If Not email Is Nothing Then
+                email.Dispose()
+            End If
+            If Not smtpClient Is Nothing Then
+                smtpClient.Dispose()
             End If
         End Try
 
