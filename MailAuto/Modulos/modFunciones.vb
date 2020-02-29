@@ -8,44 +8,7 @@ Module modFunciones
     Public Const sTitulo As String = "MailAuto"
 
     Public Function SaveToIni(ByVal Texto As String, ByVal FileName As String) As Boolean
-        SaveToIni = SaveTextToFile(System.AppDomain.CurrentDomain.BaseDirectory() & "\" & FileName & ".ini", Encrypt(Texto, sEncodeKey))
-    End Function
-
-    Public Function Encrypt(ByVal value As String, ByVal WithKey As String) As String
-
-        Dim dC As Chilkat.Crypt2
-
-        dC = New Chilkat.Crypt2
-
-        With dC
-            .UnlockComponent("STacticCrypt_veIRRBKPNJTT")
-            .CryptAlgorithm = "rijndael"
-            .KeyLength = 128
-            .SecretKey = .GenerateSecretKey(WithKey)
-            .EncodingMode = "Base64"
-            .Charset = "ANSI"
-            Encrypt = .EncryptStringENC(value)
-        End With
-
-        dC = Nothing
-    End Function
-
-    Public Function Decrypt(ByVal value As String, ByVal WithKey As String) As String
-
-        Dim dC As New Chilkat.Crypt2
-
-        With dC
-            .UnlockComponent("STacticCrypt_veIRRBKPNJTT")
-            .CryptAlgorithm = "rijndael"
-            .KeyLength = 128
-            .SecretKey = .GenerateSecretKey(WithKey)
-            .EncodingMode = "Base64"
-
-            Decrypt = .DecryptStringENC(value)
-        End With
-
-        dC = Nothing
-
+        SaveToIni = SaveTextToFile(System.AppDomain.CurrentDomain.BaseDirectory() & "\" & FileName & ".ini", Encryption.Encrypt(Texto, sEncodeKey))
     End Function
 
     Private Function SaveTextToFile(ByVal FullPath As String, ByVal Texto As String) As Boolean
@@ -139,46 +102,7 @@ Module modFunciones
 
     End Function
 
-    Private Function VerifySmtpLogin(ByRef Man As Chilkat.MailMan) As Boolean
 
-        VerifySmtpLogin = False
-
-        Man.SmtpAuthMethod = "LOGIN"
-        If Man.VerifySmtpLogin Then
-            Return True
-        End If
-
-        Man.SmtpAuthMethod = "PLAIN"
-        If Man.VerifySmtpLogin Then
-            Return True
-        End If
-
-        Man.SmtpAuthMethod = "CRAM-MD5"
-        If Man.VerifySmtpLogin Then
-            Return True
-        End If
-
-        Man.SmtpAuthMethod = "NTLM"
-        If Man.VerifySmtpLogin Then
-            Return True
-        End If
-
-        Man.SmtpAuthMethod = "NONE"
-        If Man.VerifySmtpLogin Then
-            Return True
-        End If
-
-        Man.SmtpAuthMethod = ""
-
-        If Man.VerifySmtpLogin Then
-            Return True
-        Else
-            AddLine2Log("Error al enviar el correo. " & Man.LastErrorText)
-        End If
-
-        Return False
-
-    End Function
 #End Region
 
 #Region "Configuración"
@@ -188,7 +112,7 @@ Module modFunciones
     End Function
 
     Public Function Load_Config() As Configuracion
-        Return JsonConvert.DeserializeObject(Of Configuracion)(Decrypt(GetTextFromFile(System.AppDomain.CurrentDomain.BaseDirectory() & "\Config.ini"), sEncodeKey))
+        Return JsonConvert.DeserializeObject(Of Configuracion)(Encryption.Decrypt(GetTextFromFile(System.AppDomain.CurrentDomain.BaseDirectory() & "\Config.ini"), sEncodeKey))
     End Function
 #End Region
 End Module
