@@ -24,7 +24,9 @@
 
     Private Async Sub CmdEnviar_Click(sender As Object, e As EventArgs) Handles cmdEnviar.Click
         If GuardarDatos() Then
-            Await Send_Mail(mConfig)
+            If Await Send_Mail(mConfig) Then
+                MsgBox("Mensaje Enviado.", vbInformation, sTitulo)
+            End If
         End If
     End Sub
 
