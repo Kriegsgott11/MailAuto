@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_7A30B8CCB741A41736F250EAC6542E9B"
+        "MsmKey" = "8:_2036DF7EB36C942FEB83B2F0280DE7B5"
         "OwnerKey" = "8:_94A70A34C29F40B894455691D5BAF2E4"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -46,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7A30B8CCB741A41736F250EAC6542E9B"
+        "OwnerKey" = "8:_2036DF7EB36C942FEB83B2F0280DE7B5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,6 +112,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -142,14 +150,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7A30B8CCB741A41736F250EAC6542E9B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2036DF7EB36C942FEB83B2F0280DE7B5"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7A30B8CCB741A41736F250EAC6542E9B"
+                    "_2036DF7EB36C942FEB83B2F0280DE7B5"
                     {
                     "Name" = "8:Newtonsoft.Json.dll"
                     "Attributes" = "3:512"
@@ -280,15 +288,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MailAuto"
-        "ProductCode" = "8:{A06FCEBB-E3A3-403E-BA06-90F11366933C}"
-        "PackageCode" = "8:{91210591-0BB4-4BB1-94FC-3BDD9A75BD5B}"
+        "ProductCode" = "8:{2EEE7B2E-3633-4933-813E-6677E66D4845}"
+        "PackageCode" = "8:{C4111744-419D-4FCF-8C03-844366F0C5BE}"
         "UpgradeCode" = "8:{0A8D7B56-5175-49F6-9C7E-ACFCAA2E1335}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:HXS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
