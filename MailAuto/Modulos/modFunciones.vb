@@ -11,7 +11,7 @@ Module modFunciones
         SaveToIni = SaveTextToFile(System.AppDomain.CurrentDomain.BaseDirectory() & "\" & FileName & ".ini", Encryption.Encrypt(Texto, sEncodeKey))
     End Function
 
-    Private Function SaveTextToFile(ByVal FullPath As String, ByVal Texto As String) As Boolean
+    Public Function SaveTextToFile(ByVal FullPath As String, ByVal Texto As String) As Boolean
         Try
             File.WriteAllText(FullPath, Texto, Encoding.UTF8)
             Return True
@@ -106,13 +106,13 @@ Module modFunciones
 #End Region
 
 #Region "Configuración"
-    Public Function Save_Config(ByVal C As Configuracion) As Boolean
-        Dim json As String = JsonConvert.SerializeObject(C)
+    Public Function Save_Config(ByVal P As List(Of Configuracion)) As Boolean
+        Dim json As String = JsonConvert.SerializeObject(P)
         Return SaveToIni(json, "Config")
     End Function
 
-    Public Function Load_Config() As Configuracion
-        Return JsonConvert.DeserializeObject(Of Configuracion)(Encryption.Decrypt(GetTextFromFile(System.AppDomain.CurrentDomain.BaseDirectory() & "\Config.ini"), sEncodeKey))
+    Public Function Load_Config() As List(Of Configuracion)
+        Return JsonConvert.DeserializeObject(Of List(Of Configuracion))(Encryption.Decrypt(GetTextFromFile(System.AppDomain.CurrentDomain.BaseDirectory() & "\Config.ini"), sEncodeKey))
     End Function
 #End Region
 End Module

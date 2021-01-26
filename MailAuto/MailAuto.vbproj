@@ -84,12 +84,7 @@
   <ItemGroup>
     <Compile Include="Clases\Configuraciones.vb" />
     <Compile Include="Clases\Encryption.vb" />
-    <Compile Include="Formularios\frmCuenta.Designer.vb">
-      <DependentUpon>frmCuenta.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\frmCuenta.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Clases\Perfil.vb" />
     <Compile Include="Formularios\frmPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +92,7 @@
       <DependentUpon>frmPrincipal.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulos\InputBox.vb" />
     <Compile Include="Modulos\modFunciones.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -115,9 +111,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Formularios\frmCuenta.resx">
-      <DependentUpon>frmCuenta.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.vb</DependentUpon>
     </EmbeddedResource>

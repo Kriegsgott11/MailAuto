@@ -1,4 +1,9 @@
 ﻿Public Class Configuracion
+    'Perfil
+    Public Property ID() As String
+    Public Property Nombre() As String
+    Public Property Seleccionado() As Boolean
+
     'Mensaje
     Public Property Para() As String
     Public Property Asunto() As String
@@ -14,6 +19,10 @@
     Public Property SMTPPass() As String
 
     Public Sub New()
+        ID = Guid.NewGuid().ToString()
+        Nombre = "Nuevo Perfil"
+        Seleccionado = False
+
         Asunto = ""
         Mensaje = ""
         Adjunto = ""
