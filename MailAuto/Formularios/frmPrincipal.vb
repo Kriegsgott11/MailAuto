@@ -190,7 +190,7 @@ Public Class frmPrincipal
         txtPara.Text = C.Para
         txtAsunto.Text = C.Asunto
         txtMensaje.Text = C.Mensaje
-        txtAdjunto.Text = C.Asunto
+        txtAdjunto.Text = C.Adjunto
 
         txtSMTPHost.Text = C.SMTPHost
         txtSMTPPass.Text = C.SMTPPass
