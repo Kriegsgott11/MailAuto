@@ -166,6 +166,7 @@ Public Class frmPrincipal
             .Mensaje = txtMensaje.Text
             .Adjunto = txtAdjunto.Text
 
+            .MailAddress = txtMailAddress.Text
             .SMTPHost = txtSMTPHost.Text
             .SMTPPass = txtSMTPPass.Text
             If Len(txtSMTPPort.Text) > 0 AndAlso IsTextInteger(txtSMTPPort) Then
@@ -192,6 +193,7 @@ Public Class frmPrincipal
         txtMensaje.Text = C.Mensaje
         txtAdjunto.Text = C.Adjunto
 
+        txtMailAddress.Text = C.MailAddress
         txtSMTPHost.Text = C.SMTPHost
         txtSMTPPass.Text = C.SMTPPass
         txtSMTPPort.Text = C.SMTPPort
