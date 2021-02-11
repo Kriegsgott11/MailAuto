@@ -30,7 +30,6 @@ Partial Class frmPrincipal
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cmdEnviar = New System.Windows.Forms.Button()
-        Me.lblCuenta = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtAdjunto = New System.Windows.Forms.TextBox()
         Me.cmdSelAdjunto = New System.Windows.Forms.Button()
@@ -129,15 +128,6 @@ Partial Class frmPrincipal
         Me.cmdEnviar.TabIndex = 5
         Me.cmdEnviar.Text = "Enviar"
         Me.cmdEnviar.UseVisualStyleBackColor = True
-        '
-        'lblCuenta
-        '
-        Me.lblCuenta.AutoSize = True
-        Me.lblCuenta.Location = New System.Drawing.Point(80, 35)
-        Me.lblCuenta.Name = "lblCuenta"
-        Me.lblCuenta.Size = New System.Drawing.Size(161, 13)
-        Me.lblCuenta.TabIndex = 7
-        Me.lblCuenta.Text = "Cuenta de correo: Sin Configurar"
         '
         'Label4
         '
@@ -301,7 +291,6 @@ Partial Class frmPrincipal
         Me.TabCorreo.Controls.Add(Me.txtPara)
         Me.TabCorreo.Controls.Add(Me.txtAsunto)
         Me.TabCorreo.Controls.Add(Me.cmdSelAdjunto)
-        Me.TabCorreo.Controls.Add(Me.lblCuenta)
         Me.TabCorreo.Controls.Add(Me.txtMensaje)
         Me.TabCorreo.Controls.Add(Me.cmdEnviar)
         Me.TabCorreo.Controls.Add(Me.Label4)
@@ -468,7 +457,6 @@ Partial Class frmPrincipal
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents cmdEnviar As Button
-    Friend WithEvents lblCuenta As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents txtAdjunto As TextBox
     Friend WithEvents cmdSelAdjunto As Button
